@@ -1,0 +1,30 @@
+// Place all the styles related to the Static controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+//= require MaterializeCSS/materialize
+//= require MaterializeCSS/extras/nouislider
+//= require MaterializeCSS/style
+
+//= require CustomCSS/ScrollToTop
+
+/* label underline focus color */
+/*
+.input-field.blue-input input[type]:focus{
+ border-bottom: 1px solid #2196F3;
+ box-shadow: 0 1px 0 0 #2196F3;
+}
+.input-field.blue-input input[type]:focus {
+ border-bottom: 1px solid #2196F3;
+ box-shadow: 0 1px 0 0 #2196F3;
+}
+.input-field.blue-input input[type]:focus + label {
+ color: #2196F3;
+}
+
+.input-field.blue-input input[type].valid {
+ border-bottom: 1px solid #2196F3;
+ box-shadow: 0 1px 0 0 #2196F3;
+}
+*/

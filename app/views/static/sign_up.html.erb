@@ -1,0 +1,55 @@
+
+<main>
+	<div class="container">
+  		<div class="row">
+  			<div class="col s12 m9 l10">
+
+		      <div id="input" class="section scrollspy">
+		        <p class="caption">
+		          Forms are the standard way to receive user inputted data. The transitions and smoothness of these elements are very important because of the inherent user interaction associated with forms.
+		        </p>
+
+		        <h2 class="header">Sign Up</h2>
+		        <p>Text fields allow user input. The border should light up simply and clearly indicating which field the user is currently editing. You must have a <code class="language-markup">.input-field</code> div wrapping your input and label. This helps our jQuery animate the label. This is only used in our Input and Textarea form elements.</p>
+		        <p>The validate class leverages HTML5 validation and will add a <code class="language-markup">valid</code> and <code class="language-markup">invalid</code> class accordingly. If you don't want the Green and Red validation states, just remove the <code class="language-markup">validate</code> class from your inputs.</p>
+		        <br>
+		        <div class="row">
+	        	<%= form_for @user, :url => user_signup_path, :html => {:class => "col s12"} do |u| %>
+		          
+		            <div class="row">
+		              <div class="input-field col s6">
+		                <label for="first_name">First Name</label>
+		                <%= u.text_field :first_name, class: "validate" %>
+		              </div>
+		              <div class="input-field col s6">
+		                <label for="last_name">Last Name</label>
+		                <%= u.text_field :last_name, class: "validate" %>
+		              </div>
+		            </div>
+		            <div class="row">
+		              <div class="input-field col s12">
+		                <label for="email">Email</label>
+		                <%= u.email_field :email, class: "validate" %>
+		              </div>
+		            </div>
+		            <div class="row">
+		              <div class="input-field col s12">
+		                <label for="password">Password</label>
+		                <%= u.password_field :password, class: "validate" %>
+		              </div>
+		            </div>
+		            <%= u.submit "Sign up!", class: "btn-large teal" do %>
+		            	<i class="waves-effect waves-light btn-large teal waves-input-wrapper" style="">
+		            <%end%>
+
+		        <%end%>
+		        </div>
+	        </div>
+  		</div>
+	</div>
+</main>
+
+
+<script type="text/javascript">
+
+</script>

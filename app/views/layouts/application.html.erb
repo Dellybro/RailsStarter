@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<!-- This will be used if no other layout is chosen -->
+<html>
+<head>
+  <title>Start Project</title>
+
+  <!-- Include style per-controller - vendor plugins -->
+    <%= stylesheet_link_tag params[:controller] if ::Rails.application.assets.find_asset("#{params[:controller]}.css") %>
+
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Main css styles -->
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+
+    <!-- Main javascript files -->
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+
+    <!-- Robot font is Dellybro's Favorite -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto:300italic,400italic,300,400,500,700,900' rel='stylesheet' type='text/css'/>
+</head>
+<body>
+
+<% if !@noTopNav %>
+    <%= render 'static/Navigation/topNavigation' %>
+<% end%>
+<!-- Yield for html.erb file -->
+<%= yield %>
+
+
+<!-- Bottom of body. -->
+<%= javascript_include_tag params[:controller] if ::Rails.application.assets.find_asset("#{params[:controller]}.js") %>
+<!-- Include javascript per-view -->
+<%= yield :javascript %>
+
+</body>
+</html>
+
+<!-- A Travis Delly Function -->
+<script type="text/javascript">
+	
+<% flash.each do|message_type, message| %>
+    <% if message_type == "warning" %>
+        <% message.each do |alert| %>
+            <% if alert.kind_of?(AlertMessage) %>
+                Materialize.toast("<%= alert.message_title %> - <%= alert.message %>", 3000);
+            <%else%>
+                Materialize.toast("<%= alert['message_title'] %> - <%= alert['message'] %>", 3000);
+            <%end%>
+        <% end %>
+    <% elsif message_type == "error" %>
+        <% message.each do |alert| %>
+            <% if alert.kind_of?(AlertMessage) %>
+                Materialize.toast("<%= alert.message_title %> - <%= alert.message %>", 3000);
+            <%else%>
+                Materialize.toast("<%= alert['message_title'] %> - <%= alert['message'] %>", 3000);
+            <%end%>
+        <% end %>
+    <% elsif message_type == "success" %>
+        <% message.each do |alert| %>
+            <% if alert.kind_of?(AlertMessage) %>
+                Materialize.toast("<%= alert.message_title %> - <%= alert.message %>", 3000);
+            <%else%>
+                Materialize.toast("<%= alert['message_title'] %> - <%= alert['message'] %>", 3000);
+            <%end%>
+        <% end %>
+    <% elsif message_type == "info" %>
+        <% message.each do |alert| %>
+            <% if alert.kind_of?(AlertMessage) %>
+                Materialize.toast("<%= alert.message_title %> - <%= alert.message %>", 3000);
+            <%else%>
+                Materialize.toast("<%= alert['message_title'] %> - <%= alert['message'] %>", 3000);
+            <%end%>
+        <% end %>
+    <%end%>
+<% end %>
+
+
+</script>
