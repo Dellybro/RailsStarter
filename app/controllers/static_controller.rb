@@ -52,7 +52,7 @@ class StaticController < ApplicationController
       if @user && User.authenticate(params[:session][:email], params[:session][:password])
         if @user.activated
           log_in_user @user
-          flash[:success] = [AlertMessage.new(:message_title => "Signin Success!", :message => "Thanks for logging in, #{@user.first_name}!")]
+          flash[:success] = [AlertMessage.new(:message_title => "Signin Success!", :message => "Thanks for logging in, #{@user.username}!")]
           redirect_to user_index_path
         else
           flash[:warning] = [AlertMessage.new(:message_title => "Signin Failure", :message => "You are not activated! Check your inbox for link")]
@@ -65,10 +65,5 @@ class StaticController < ApplicationController
   	end
   end
 
-
-  private
-  	def  user_params
-  		params.require(:user).permit(:first_name, :last_name, :email, :password, :username)
-  	end
   
 end

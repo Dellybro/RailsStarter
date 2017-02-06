@@ -25,6 +25,9 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       # Any API routes would go here
+
+      #Good Crud stuff
+      get 'users/index'
     end
   end
 
