@@ -17,16 +17,19 @@ Rails.application.configure do
   # Care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
-  host = 'smtp.sengrid.net'
+  host = 'www.<your website>.com'
   config.action_mailer.default_url_options = { host: host }
-  ActionMailer::Base.smtp_settings = {
-    :address => "smtp.sendgrid.net",
-    :port => 587,
-    :domain => "www.domain.com",
-    :authentication => :plain,
-    :user_name => "username",
-    :password => "password",
-    :enable_starttls_auto => true
+
+
+
+  # SMTP settings for gmail
+  config.action_mailer.smtp_settings = {
+    :address              => "smtp.gmail.com",
+    :port                 => 587,
+    :user_name            => "tdellytech@gmail.com",
+    :password             => "qaswed123",
+    :authentication       => "plain",
+    :openssl_verify_mode  => 'none'
   }
   
   # Enable Rack::Cache to put a simple HTTP cache in front of your application
