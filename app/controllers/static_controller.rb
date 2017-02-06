@@ -3,7 +3,6 @@ class StaticController < ApplicationController
 
 
   def index
-    @noTopNav = true
   end
 
   def about
@@ -19,9 +18,12 @@ class StaticController < ApplicationController
   	if request.get?
   		@user = User.new
   	elsif request.post?
+
   		# Create user validation method here
   		@user = User.create(user_params)
   		if @user.id
+        #Remove failed user from the session
+        session[:failedUser] = nil;
         # Send activation Link sets new Activation token (temporary) and sets an activation digest, which is a crypted version of the token
         # Once set, it send an email, with a link to activate the user. The activation digest once set, can only be decrypted using the token
         # The token vanishes from the User once it's deallocated
@@ -29,16 +31,22 @@ class StaticController < ApplicationController
   			flash[:success] = [AlertMessage.new(:message_title => "Signup Successful", :message => "Email Sent to your Inbox for Verification")]
 	  		redirect_to sign_in_path
   		else
-  			flash[:warning] = get_toastr_errors(@user)
-	  		redirect_to sign_up_path
+        session[:failedUser] = @user
+  			flash[:error] = get_toastr_errors(@user)
+	  		redirect_to sign_in_path(:anchor => "signup")
   		end
   	end
   end
 
   def sign_in
   	if request.get?
-  		# Continue forward
+      #User may come in from session failed user (from above)
+      @user = User.new(session[:failedUser])
+
   	elsif request.post?
+      # Just incase user tried to make a user
+      session[:failedUser] = nil;
+
       # Login user
       @user = User.find_by(:email => params[:session][:email])
       if @user && User.authenticate(params[:session][:email], params[:session][:password])
@@ -60,7 +68,7 @@ class StaticController < ApplicationController
 
   private
   	def  user_params
-  		params.require(:user).permit(:first_name, :last_name, :email, :password)
+  		params.require(:user).permit(:first_name, :last_name, :email, :password, :username)
   	end
   
 end

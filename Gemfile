@@ -3,6 +3,7 @@ gem 'mime-types', require: 'mime/types/columnar'
 
 source 'https://rubygems.org'
 
+gem 'dotenv'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
@@ -36,7 +37,6 @@ gem 'sendgrid'
 gem 'aws-sdk'
 # Photo Storage
 gem 'nokogiri'
-gem 'carrierwave'
 gem 'fog' # 
 # Kill puma workers
 gem 'puma_worker_killer'
@@ -44,6 +44,8 @@ gem 'derailed'
 gem "rack-timeout"
 
 gem 'puma'
+
+gem 'material_design_lite-rails', '~> 1.3'
 
 
 group :production do 

@@ -1,43 +1,85 @@
+<div class="mdl-layout layout-login mdl-js-layout mdl-color--grey-100">
+	<main class="mdl-layout__login_card hidden" id="sign-up-card">
+		<div class="mdl-card mdl-shadow--6dp">
+			<%= form_for @user, url: user_signup_path, id: "signup" do |u| %>
+				<div class="mdl-card__title mdl-color--primary mdl-color-text--white">
+					<h2 class="mdl-card__title-text">Questions App.</h2>
+				</div>
+			  	<div class="mdl-card__supporting-text">
+						<div class="mdl-textfield mdl-js-textfield">
+							<%= u.text_field :username, class: "mdl-textfield__input" %>
+							<label class="mdl-textfield__label" for="username">Username</label>
+						</div>
+						<div class="mdl-textfield mdl-js-textfield">
+							<%= u.email_field :email, class: "mdl-textfield__input" %>
+							<label class="mdl-textfield__label" for="username">Email</label>
+						</div>
+						<div class="mdl-textfield mdl-js-textfield">
+							
+							<%= u.password_field :password, class: "mdl-textfield__input" %>
+							<label class="mdl-textfield__label" for="userpass">Password</label>
+						</div>
+						<div class="mdl-textfield mdl-js-textfield">
+							<%= u.text_field :password_digest, class: "mdl-textfield__input" %>
+							<label class="mdl-textfield__label" for="userpass">Confirm Password</label>
+						</div>
+				</div>
+				<div class="mdl-card__actions mdl-card--border">
 
-<main>
-	<div class="container">
-  		<div class="row">
-  			<div class="col s12 m9 l10">
-
-		      <div id="input" class="section scrollspy">
-		        <p class="caption">
-		          Forms are the standard way to receive user inputted data. The transitions and smoothness of these elements are very important because of the inherent user interaction associated with forms.
-		        </p>
-
-		        <h2 class="header">Sign In</h2>
-		        <p>Text fields allow user input. The border should light up simply and clearly indicating which field the user is currently editing. You must have a <code class="language-markup">.input-field</code> div wrapping your input and label. This helps our jQuery animate the label. This is only used in our Input and Textarea form elements.</p>
-		        <p>The validate class leverages HTML5 validation and will add a <code class="language-markup">valid</code> and <code class="language-markup">invalid</code> class accordingly. If you don't want the Green and Red validation states, just remove the <code class="language-markup">validate</code> class from your inputs.</p>
-		        <br>
-		        <div class="row">
-	        	<%= form_for :session, :url => user_signin_path, :html => {:class => "col s12"} do |u| %>
-		          
-		            <div class="row">
-		              <div class="input-field col s6">
-		                <label for="email">Email</label>
-		                <%= u.text_field :email, class: "validate" %>
-		              </div>
-		              <div class="input-field col s6">
-		                <label for="password">Password</label>
-		                <%= u.password_field :password, class: "validate" %>
-		              </div>
-		            </div>
-		            <%= u.submit "Sign In!", class: "btn-large teal" do %>
-		            	<i class="waves-effect waves-light btn-large teal waves-input-wrapper" style="">
-		            <%end%>
-
-		        <%end%>
-		        </div>
-	        </div>
-  		</div>
-	</div>
-</main>
+					<button id="finish" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Finish</button>
+					<button id="back" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Back</button>
+				</div>
+			<%end %>
+		</div>
+	</main>
+	<main class="mdl-layout__login_card" id="login-card">
+		<div class="mdl-card mdl-shadow--6dp">
+			<%= form_for :session, url: user_signin_path do %>
+				<div class="mdl-card__title mdl-color--primary mdl-color-text--white">
+					<h2 class="mdl-card__title-text">Questions App.</h2>
+				</div>
+		  		<div class="mdl-card__supporting-text">
+						<div class="mdl-textfield mdl-js-textfield">
+							<input class="mdl-textfield__input" type="text" id="username" />
+							<label class="mdl-textfield__label" for="username">Username</label>
+						</div>
+						<div class="mdl-textfield mdl-js-textfield">
+							<input class="mdl-textfield__input" type="password" id="userpass" />
+							<label class="mdl-textfield__label" for="userpass">Password</label>
+						</div>
+				</div>
+				<div class="mdl-card__actions mdl-card--border">
+					<button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Login</button>
+					<button id="sign-up-btn" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Sign up</button>
+				</div>
+			<% end %>
+		</div>
+	</main>
+</div>
 
 
 <script type="text/javascript">
+$("#finish");
+
+$("#back").on('click', function(e){
+	e.preventDefault()
+	$("#login-card").removeClass('hidden');
+	$("#sign-up-card").addClass('hidden');	
+})
+
+$("#sign-up-btn").on('click', function(e){
+	e.preventDefault()
+	$("#login-card").addClass('hidden');
+	$("#sign-up-card").removeClass('hidden');
+})
+
+$(function(){
+    if(window.location.hash == "#signup"){
+    	console.log("signup")
+
+		$("#login-card").addClass('hidden');
+		$("#sign-up-card").removeClass('hidden');
+    }
+});
 
 </script>

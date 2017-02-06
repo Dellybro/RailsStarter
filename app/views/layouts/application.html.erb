@@ -7,23 +7,26 @@
   <!-- Include style per-controller - vendor plugins -->
     <%= stylesheet_link_tag params[:controller] if ::Rails.application.assets.find_asset("#{params[:controller]}.css") %>
 
-    
+     <%= stylesheet_link_tag "https://fonts.googleapis.com/icon?family=Material+Icons" %>
+     
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Main css styles -->
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 
     <!-- Main javascript files -->
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+
+    <%= stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" %>
+    <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js" %>
+
     <%= csrf_meta_tags %>
 
     <!-- Robot font is Dellybro's Favorite -->
     <link href='http://fonts.googleapis.com/css?family=Roboto:300italic,400italic,300,400,500,700,900' rel='stylesheet' type='text/css'/>
 </head>
 <body>
-
-<% if !@noTopNav %>
-    <%= render 'static/Navigation/topNavigation' %>
-<% end%>
+    
 <!-- Yield for html.erb file -->
 <%= yield %>
 
@@ -43,33 +46,33 @@
     <% if message_type == "warning" %>
         <% message.each do |alert| %>
             <% if alert.kind_of?(AlertMessage) %>
-                Materialize.toast("<%= alert.message_title %> - <%= alert.message %>", 3000);
+                toastr.warning("<%= alert.message_title %> - <%= alert.message %>");
             <%else%>
-                Materialize.toast("<%= alert['message_title'] %> - <%= alert['message'] %>", 3000);
+                toastr.warning("<%= alert['message_title'] %> - <%= alert['message'] %>");
             <%end%>
         <% end %>
     <% elsif message_type == "error" %>
         <% message.each do |alert| %>
             <% if alert.kind_of?(AlertMessage) %>
-                Materialize.toast("<%= alert.message_title %> - <%= alert.message %>", 3000);
+                toastr.error("<%= alert.message_title %> - <%= alert.message %>");
             <%else%>
-                Materialize.toast("<%= alert['message_title'] %> - <%= alert['message'] %>", 3000);
+                toastr.error("<%= alert['message_title'] %> - <%= alert['message'] %>");
             <%end%>
         <% end %>
     <% elsif message_type == "success" %>
         <% message.each do |alert| %>
             <% if alert.kind_of?(AlertMessage) %>
-                Materialize.toast("<%= alert.message_title %> - <%= alert.message %>", 3000);
+                toastr.success("<%= alert.message_title %> - <%= alert.message %>");
             <%else%>
-                Materialize.toast("<%= alert['message_title'] %> - <%= alert['message'] %>", 3000);
+                toastr.success("<%= alert['message_title'] %> - <%= alert['message'] %>");
             <%end%>
         <% end %>
     <% elsif message_type == "info" %>
         <% message.each do |alert| %>
             <% if alert.kind_of?(AlertMessage) %>
-                Materialize.toast("<%= alert.message_title %> - <%= alert.message %>", 3000);
+                toastr.info("<%= alert.message_title %> - <%= alert.message %>");
             <%else%>
-                Materialize.toast("<%= alert['message_title'] %> - <%= alert['message'] %>", 3000);
+                toastr.info("<%= alert['message_title'] %> - <%= alert['message'] %>");
             <%end%>
         <% end %>
     <%end%>

@@ -68,7 +68,7 @@ class User < ActiveRecord::Base
 	# Sends password reset email using UserMailer found in /app/mailers/user_mailer.rb
 	def send_password_reset_email
 		self.create_reset_digest
-		UserMailer.password_reset(self).deliver_now
+		UsersMailer.password_reset(self).deliver_now
 	end
 
 	# Checks for reset password sent

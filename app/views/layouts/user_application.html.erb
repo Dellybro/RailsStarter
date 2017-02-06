@@ -7,7 +7,8 @@
   <!-- Include style per-controller - vendor plugins -->
     <%= stylesheet_link_tag params[:controller] if ::Rails.application.assets.find_asset("#{params[:controller]}.css") %>
 
-    
+    <%= stylesheet_link_tag "https://fonts.googleapis.com/icon?family=Material+Icons" %>
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Main css styles -->
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
@@ -21,9 +22,6 @@
 </head>
 <body>
 
-<% if !@noTopNav %>
-    <%= render 'users/Navigation/topNavigation' %>
-<% end%>
 <!-- Yield for html.erb file -->
 <%= yield %>
 

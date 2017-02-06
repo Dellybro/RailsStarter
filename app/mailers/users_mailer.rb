@@ -9,7 +9,7 @@ class UsersMailer < ApplicationMailer
 
   def account_activation(user)
     @user = user
-    @url = "localhost:3000/activate_user?token=#{@user.activation_token}&email=#{@user.email}"
+    @url = "http://localhost:3000/activate_user?token=#{@user.activation_token}&email=#{@user.email}"
 
     mail to: user.email, subject: "Account activation"
   end
@@ -17,7 +17,7 @@ class UsersMailer < ApplicationMailer
   
   def password_reset(user)
     @user = user
-    @url = "https://www.faker.com/reset_user_password?user_id=#{@user.objectId}&token=#{@user.reset_token}"
+    @url = "http://localhost:3000/reset_user_password?user_id=#{@user.objectId}&token=#{@user.reset_token}"
 
     mail to: user.email, subject: "Reset Password - Start Project"
   end

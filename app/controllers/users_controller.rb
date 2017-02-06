@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     	if @user
     		if @user.authenticated?(:activation, params[:token])
     			@user.activate
-		        flash[:error] = [AlertMessage.new(message: "Token Found and User Activated!")]
+		        flash[:success] = [AlertMessage.new(message: "Token Found and User Activated!")]
 	    		redirect_to sign_in_path
     		else
 		        flash[:error] = [AlertMessage.new(message: "Incorrect token, if you feel like this is wrong, feel free to contact us!")]
